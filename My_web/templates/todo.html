@@ -1,0 +1,14 @@
+<h1>To do List</h1>
+<h2>Tasks: </h2>
+<form method="POST" action="todo">
+    {%csrf_token%}
+    {{TaskForm.title}}
+    <input class="btn" type="submit" name="Create Task">
+</form>
+{%for task in tasks%}
+
+<p>{{task}} - {%if task.completed == True %} ✅ {%else%} ❌{%endif%}
+<a href="{%url 'update_task' task.id %}"> Update </a><pre></pre> <a href="{%url 'delete_task' task.id %}"> Delete Task </a>
+</p>
+
+{%endfor%}
